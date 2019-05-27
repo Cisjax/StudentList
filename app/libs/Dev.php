@@ -10,4 +10,14 @@ class Dev
         echo '</pre>';
         exit;
     }
+    static public function years($default=null)
+    {   $j=1990;
+        while ($j <= 2005) {
+            echo "<option value='" . $j . "'>$j</option>";
+            if (isset($default)){
+                echo "<option selected value='" . $default . "'>$default </option>";
+            }
+            $j++;
+        }
+    }
 }

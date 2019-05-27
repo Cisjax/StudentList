@@ -8,6 +8,6 @@ return [
     'user/login' => 'user/login', //actionLogin в UserConroller
     'user/logout' => 'user/logout', //actionLogout в UserConroller
    
-    '' => 'main/index' //actionIndex в MainConroller
+    '' => 'user/index' //actionIndex в MainConroller
     
 ];

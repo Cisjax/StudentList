@@ -2,11 +2,13 @@
 
 namespace app\core;
 
+use app\libs\Dev;
+
 class View
 {
     public $path;
     public $route;
-    public $layout = 'default';
+    public $layout = ['header', 'footer', 'header_guest'];
 
     public function __construct($route)
     {
@@ -14,21 +16,29 @@ class View
         $this->path = $route['controller'] . '/' . $route['action'];
     }
 
-    public function render($title, $vars = []){
+    public function render($active, $title, $vars = [], $role = 'guest')
+    {
         extract($vars);
         $path = 'app/views/';
-        if (file_exists($path . $this->path . '.php')){
-            ob_start();
+
+        if (file_exists($path . $this->path . '.php')) {
+            if ($role == 'guest') {
+                require_once 'app/views/layouts/' . $this->layout[2] . '.php';
+            } else {
+
+                require_once 'app/views/layouts/' . $this->layout[0] . '.php';
+            }
             require_once $path . $this->path . '.php';
-            $content = ob_get_contents();
-            require_once 'app/views/layouts/' . $this->layout . '.php';
-        }else{
+            require_once 'app/views/layouts/' . $this->layout[1] . '.php';
+
+        } else {
             echo 'Вид не найден ' . $this->path;
         }
 
     }
 
-    public static function errorCode($code){
+    public static function errorCode($code)
+    {
         http_response_code($code);
         $path = 'app/views/errors/';
         if (file_exists($path)) {
@@ -37,7 +47,8 @@ class View
         exit();
     }
 
-    public function redirect($url){
+    public function redirect($url)
+    {
         header('Location: ' . $url);
         exit();
     }

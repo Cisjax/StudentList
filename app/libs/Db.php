@@ -31,4 +31,22 @@ class Db
         return self::$_instance;
     }
 
+    public function select($table,$params = []){
+        $sql = "SELECT ";
+        $i = 0;
+        foreach ($params as $param){
+            $sql .= $param;
+            $i++;
+            if ($i != count($params)) {
+                $sql .= ',';
+            }
+        }
+        $sql .= ' FROM ' . $table;
+        $result = $this->db->query($sql)->fetchAll(\PDO::FETCH_ASSOC);
+        if ($result){
+            return $result;
+        }
+    }
+
+
 }
