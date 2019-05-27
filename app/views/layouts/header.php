@@ -31,7 +31,7 @@
                 <a class="nav-link" href="#">Кабинет</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Выход</a>
+                <a class="nav-link" href="/user/logout/">Выход</a>
             </li>
         </ul>
         <form action="?" method="get" class="form-inline my-2 my-lg-0">

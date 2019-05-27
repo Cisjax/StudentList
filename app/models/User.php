@@ -15,8 +15,24 @@ class User
         return $users;
 
     }
-    public function getActive(){
-        Dev::debug($_SERVER);
+    public function saveStudent($post){
+        $db = Db::getInstance();
+        unset($post['save']);
+        $password = md5($post['password']);
+        $post['password'] = $password;
+        $result = $db->insert('students', $post);
+
+    }
+    public function checkStudent($post){
+        $db = Db::getInstance();
+        unset($post['submit']);
+        $password = md5($post['password']);
+        $post['password'] = $password;
+        $users = $db->check('students', ['email', 'password'],$post);
+
+        if ($users){
+            return true;
+        }
 
     }
 }

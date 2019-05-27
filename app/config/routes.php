@@ -7,7 +7,7 @@ return [
     'cabinet' => 'cabinet/index', //actionIndex в cabinetConroller
     'user/login' => 'user/login', //actionLogin в UserConroller
     'user/logout' => 'user/logout', //actionLogout в UserConroller
-   
+    'user/index' => 'user/index' ,
     '' => 'user/index' //actionIndex в MainConroller
     
 ];

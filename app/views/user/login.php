@@ -1,34 +1,43 @@
-<div class="container">
-    <div class="row justify-content-center">
-        <form action="?" method="post">
-            <div class="col-md-12 mb-3">
-                <label for="validationServer01">Email:</label>
-                <input type="text" name="email" class="form-control" id="validationServer01" placeholder="Email" value="" required>
-                <div class="valid-feedback">
-                    Looks good!
+<div class="content-w3ls">
+    <div class="text-center icon">
+        <span class="fas fa-graduation-cap"></span>
+    </div>
+    <div class="content-bottom">
+        <form method="post">
+            <div class="field-group">
+                <span class="fa fa-user" aria-hidden="true"></span>
+                <div class="wthree-field">
+                    <input name="email" id="text1" type="text" value="" placeholder="Email..." required>
                 </div>
             </div>
-            <div class="col-md-12 mb-3">
-                <label for="validationServer01">Password:</label>
-                <input type="text" name="password" class="form-control" id="validationServer01" placeholder="Password" value=""
-                       required>
-                <div class="valid-feedback">
-                    Looks good!
+            <div class="field-group">
+                <span class="fa fa-lock" aria-hidden="true"></span>
+                <div class="wthree-field">
+                    <input name="password" id="myInput" type="Password" placeholder="Пароль">
                 </div>
-                <a href="/user/register">Зарегистрироваться</a>
             </div>
-            <div class="col-md-12 mb-3">
-            <div class="form-check mb-3">
-                <input name="checked" class="form-check-input <?= '' ?>" type="checkbox" value="" id="invalidCheck3"
-                       required>
-                <label class="form-check-label" for="invalidCheck3">
-                    Запомнить
-                </label>
+            <div class="wthree-field">
+                <button type="submit" name="submit" class="btn" value="Войти">Войти</button>
             </div>
-            <div class="col-md-12 mb-3 text-center">
-
-            <input class="btn btn-primary" name="submit" type="submit" value="Вход">
-            </div>
+            <ul class="list-login">
+                <li class="switch-agileits">
+                    <label class="switch">
+                        <input type="checkbox" name="remember">
+                        <span class="slider round"></span>
+                        Запомнить
+                    </label>
+                </li>
+                <li>
+                    <a href="#" class="text-right">Забыл пароль?</a>
+                </li>
+                <li class="clearfix"></li>
+            </ul>
+            <ul class="list-login-bottom text-center">
+                <li class="">
+                    <a href="#" class="">Зарегистрироваться</a>
+                </li>
+                <li class="clearfix"></li>
+            </ul>
         </form>
     </div>
 </div>
