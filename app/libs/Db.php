@@ -53,6 +53,7 @@ class Db
     {
         $sql = 'SELECT ';
         $i = 0;
+
         foreach ($params as $param) {
             $sql .= $param;
             $i++;
@@ -67,30 +68,27 @@ class Db
             $sql .= $paramId;
             $sql .= '= ?';
             $i++;
-            if ($i != count($params)) {
+            if ($i != count($post)) {
                 $sql .= ' AND ';
             }
         }
 
         $stmt = $this->db->prepare($sql);
-
         $i = 1;
         foreach ($post as $paramId => $params) {
             $stmt->bindValue($i, $params);
             $i++;
         }
         $stmt->execute();
-        $result = $stmt->fetchColumn();
-
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
         if ($result) {
-            return true;
+            return $result;
         }
     }
 
     public function insert($table, $post = [])
     {
         $sql = "INSERT INTO " . $table . ' (';
-        $bindParams = [];
         $i = 0;
         foreach ($post as $paramId => $param) {
             $sql .= $paramId;
@@ -120,5 +118,51 @@ class Db
 
         }
 
+        $result = $stmt->execute();
+        if ($result){
+            return true;
+        }
+
+    }
+    public function update($table, $post = [], $id = '')
+    {
+        $sql = "UPDATE " . $table . ' SET ';
+        $i = 0;
+        foreach ($post as $paramId => $param) {
+            $sql .= $paramId . '=?';
+            $i++;
+            if ($i != count($post)) {
+                $sql .= ', ';
+            }
+        }
+
+        $sql .= ' WHERE id = ?';
+        $post['id'] = $id;
+        $stmt = $this->db->prepare($sql);
+        $i = 1;
+        foreach ($post as $paramId => $params) {
+            $stmt->bindValue($i, $params);
+            $i++;
+
+        }
+
+        $stmt->execute();
+        $result = $stmt->rowCount();
+
+        if ($result){
+            return true;
+        }
+
+    }
+
+    public function delete($table, $id){
+        $sql = 'DELETE FROM ' .  $table . ' WHERE id= ?';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(1,$id);
+        $result = $stmt->execute();
+
+        if ($result){
+            return true;
+        }
     }
 }

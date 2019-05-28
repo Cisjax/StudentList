@@ -16,6 +16,12 @@ class View
         $this->path = $route['controller'] . '/' . $route['action'];
     }
 
+    /**
+     * @param $active
+     * @param $title
+     * @param array $vars
+     * @param string $role
+     */
     public function render($active, $title, $vars = [], $role = 'guest')
     {
         extract($vars);
